@@ -20,5 +20,9 @@
     this._board.take(row, column, this._player.symbol());
   };
 
+  Game.prototype.robotPlay = function() {
+    this._board.take(this._robot.choice(this._boardSize), this._robot.choice(this._boardSize), this._robot.symbol());
+  };
+
   exports.Game = Game;
 })(this);

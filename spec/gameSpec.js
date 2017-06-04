@@ -33,5 +33,15 @@ describe('Game', function() {
     });
   });
 
+  describe('#robotPlay', function() {
+    it('marks the board with a o', function() {
+      spyOn(game._robot, 'choice').and.returnValue(0);
+      game.robotPlay();
+      expect(game._board.grid()).toEqual([['o', '', ''],
+                                         ['', '', ''],
+                                         ['', '', '']]);
+    });
+  });
+
 
 });

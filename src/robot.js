@@ -16,5 +16,9 @@
     return 'o';
   };
 
+  Robot.prototype.choice = function(size) {
+    return Math.floor(Math.random() * size);
+  };
+
   exports.Robot = Robot;
 })(this);

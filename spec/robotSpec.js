@@ -22,5 +22,11 @@ describe('Robot', function() {
     });
   });
 
+  describe('#choice', function() {
+    it('returns a random value given a specified board size', function() {
+      expect([0, 1, 2]).toContain(robot.choice(3));
+    });
+  });
+
 
 });

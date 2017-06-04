@@ -11,12 +11,20 @@ describe('Board', function() {
                                    ['', '', '']])
   });
 
-  it('has a method for marking a cell', function() {
-    board.take(0,1,'x')
-    expect(board.grid()).toEqual([['', 'x', ''],
-                                  ['', '', ''],
-                                  ['', '', '']])
-  })
+  describe('#take', function() {
 
+    it('has a method for marking a cell', function() {
+      board.take(0,1,'x')
+      expect(board.grid()).toEqual([['', 'x', ''],
+                                    ['', '', ''],
+                                    ['', '', '']])
+    })
+
+    it('raises an error if a cell is already taken', function() {
+      board.take(2,2,'x')
+      expect(function() { board.take(2,2,'o') }).toThrow('that cell is already taken')
+    })
+
+  })
 
 });

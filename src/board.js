@@ -11,6 +11,8 @@
   }
 
   Board.prototype.take = function(row, column, symbol) {
+    if(this._grid[row][column] != '') {
+      throw('that cell is already taken')}
     this._grid[row][column] = symbol
   }
 

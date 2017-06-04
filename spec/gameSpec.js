@@ -20,7 +20,16 @@ describe('Game', function() {
   describe('#switchPlayer', function() {
     it('switches the current player', function() {
       game.switchPlayer();
-      expect(game._currentPlayer).toEqual(jasmine.any(Robot));  
+      expect(game._currentPlayer).toEqual(jasmine.any(Robot));
+    });
+  });
+
+  describe('#playerPlay', function() {
+    it('marks the board with an x', function() {
+      game.playerPlay(0,2);
+      expect(game._board.grid()).toEqual([['', '', 'x'],
+                                         ['', '', ''],
+                                         ['', '', '']]);
     });
   });
 

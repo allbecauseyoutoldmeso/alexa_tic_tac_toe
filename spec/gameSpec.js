@@ -31,6 +31,12 @@ describe('Game', function() {
                                          ['', '', ''],
                                          ['', '', '']]);
     });
+    it('does a different thing is the cell is already taken', function() {
+      spyOn(game, 'explainMistake');
+      game.playerPlay(0,0);
+      game.playerPlay(0,0);
+      expect(game.explainMistake).toHaveBeenCalled();
+    });
   });
 
   describe('#robotPlay', function() {

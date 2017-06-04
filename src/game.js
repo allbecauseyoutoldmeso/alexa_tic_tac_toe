@@ -13,11 +13,19 @@
   };
 
   Game.prototype.playerPlay = function(row, column) {
-    this._board.take(row, column, this._player.symbol());
+    if(this._board.grid()[row][column] !== '') {
+      this.explainMistake();
+    } else {
+      this._board.take(row, column, this._player.symbol());
+    }
   };
 
   Game.prototype.robotPlay = function() {
     this._board.take(this._robot.choice(this._boardSize), this._robot.choice(this._boardSize), this._robot.symbol());
+  };
+
+  Game.prototype.explainMistake = function() {
+
   };
 
   exports.Game = Game;

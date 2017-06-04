@@ -7,5 +7,13 @@
     this._currentPlayer = this._player;
   }
 
+  Game.prototype.switchPlayer = function() {
+    if(this._currentPlayer === this._player) {
+      this._currentPlayer = this._robot;
+    } else {
+      this._currentPlayer = this._player;
+    }
+  };
+
   exports.Game = Game;
 })(this);

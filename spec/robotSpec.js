@@ -17,7 +17,7 @@ describe('Robot', function() {
   });
 
   describe('#symbol', function() {
-    it('returns x', function() {
+    it('returns o', function() {
       expect(robot.symbol()).toEqual('o');
     });
   });

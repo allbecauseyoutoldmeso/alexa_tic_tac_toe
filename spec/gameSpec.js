@@ -31,7 +31,7 @@ describe('Game', function() {
                                          ['', '', ''],
                                          ['', '', '']]);
     });
-    it('does a different thing is the cell is already taken', function() {
+    it('does a different thing if the cell is already taken', function() {
       spyOn(game, 'explainMistake');
       game.playerPlay(0,0);
       game.playerPlay(0,0);
@@ -44,8 +44,22 @@ describe('Game', function() {
       spyOn(game._robot, 'choice').and.returnValue(0);
       game.robotPlay();
       expect(game._board.grid()).toEqual([['o', '', ''],
-                                         ['', '', ''],
-                                         ['', '', '']]);
+                                          ['', '', ''],
+                                          ['', '', '']]);
+    });
+    it('continues looping until it locates a free cell', function() {
+      game.playerPlay(0,0);
+      game.playerPlay(0,1);
+      game.playerPlay(0,2);
+      game.playerPlay(1,0);
+      game.playerPlay(1,1);
+      game.playerPlay(1,2);
+      game.playerPlay(2,0);
+      game.playerPlay(2,1);
+      game.robotPlay();
+      expect(game._board.grid()).toEqual([['x', 'x', 'x'],
+                                          ['x', 'x', 'x'],
+                                          ['x', 'x', 'o']]);
     });
   });
 

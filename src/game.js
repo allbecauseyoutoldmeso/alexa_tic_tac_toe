@@ -21,7 +21,13 @@
   };
 
   Game.prototype.robotPlay = function() {
-    this._board.take(this._robot.choice(this._boardSize), this._robot.choice(this._boardSize), this._robot.symbol());
+    var row = this._robot.choice(this._boardSize);
+    var column = this._robot.choice(this._boardSize);
+    if(this._board.grid()[row][column] !== '') {
+      this.robotPlay();
+    } else {
+      this._board.take(row, column, this._robot.symbol());
+    }
   };
 
   Game.prototype.explainMistake = function() {

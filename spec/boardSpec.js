@@ -13,7 +13,7 @@ describe('Board', function() {
 
   describe('#take', function() {
 
-    it('has a method for marking a cell', function() {
+    it('is a function for marking a cell', function() {
       board.take(0,1,'x');
       expect(board.grid()).toEqual([['', 'x', ''],
                                     ['', '', ''],

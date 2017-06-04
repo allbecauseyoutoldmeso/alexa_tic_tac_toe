@@ -12,7 +12,13 @@ describe('Player', function() {
   describe('#addPoints', function() {
     it('increases player points', function() {
       player.addPoints(1);
-      expect(player.points()).toEqual(1);  
+      expect(player.points()).toEqual(1);
+    });
+  });
+
+  describe('#symbol', function() {
+    it('returns x', function() {
+      expect(player.symbol()).toEqual('x');
     });
   });
 

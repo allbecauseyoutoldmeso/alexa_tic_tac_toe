@@ -2,10 +2,10 @@ describe('Board', function() {
 
   var board;
   beforeEach(function() {
-    board = new Board()
+    board = new Board(3)
   });
 
-  it('is initialized with an array of empty cells', function() {
+  it('is initialized with a specified number of empty columns and rows', function() {
     expect(board.grid()).toEqual([['', '', ''],
                                    ['', '', ''],
                                    ['', '', '']])

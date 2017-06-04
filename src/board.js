@@ -25,7 +25,6 @@
       throw('that cell is already taken');}
     this._grid[row][column] = symbol;
   };
-
-  exports.makeRow = makeRow;
+  
   exports.Board = Board;
 })(this);

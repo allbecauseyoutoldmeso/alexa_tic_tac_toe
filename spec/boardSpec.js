@@ -37,6 +37,18 @@ describe('Board', function() {
                                             ['x', 'x', '']]);
       expect(board.hasWon('x')).toBeTruthy();
     });
+    it('returns true if player has a diagonal', function() {
+      spyOn(board, 'grid').and.returnValue([['x', 'o', 'x'],
+                                            ['', 'x', 'o'],
+                                            ['x', 'x', '']]);
+      expect(board.hasWon('x')).toBeTruthy();
+    });
+    it('returns false if player has not won', function() {
+      spyOn(board, 'grid').and.returnValue([['', 'o', 'x'],
+                                            ['', '', 'o'],
+                                            ['x', 'x', '']]);
+      expect(board.hasWon('x')).toBeFalsy();
+    });
   });
 
 

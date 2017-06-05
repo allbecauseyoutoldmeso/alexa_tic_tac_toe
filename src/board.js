@@ -28,7 +28,7 @@
   };
 
   Board.prototype.hasWon = function(symbol) {
-    return this.anyRowWin(symbol);
+    return this.anyRowWin(symbol) || this.anyColumnWin(symbol, this.grid());
   };
 
 

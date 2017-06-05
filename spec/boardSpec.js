@@ -31,12 +31,12 @@ describe('Board', function() {
                                             ['', 'o', '']]);
       expect(board.hasWon('x')).toBeTruthy();
     });
-    // it('returns true if player has a column', function() {
-    //   spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
-    //                                         ['x', 'o', 'o'],
-    //                                         ['x', 'x', '']]);
-    //   expect(board.hasWon('x')).toBeTruthy();
-    // });
+    it('returns true if player has a column', function() {
+      spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
+                                            ['x', 'o', 'o'],
+                                            ['x', 'x', '']]);
+      expect(board.hasWon('x')).toBeTruthy();
+    });
   });
 
 
@@ -72,7 +72,7 @@ describe('Board', function() {
 
   describe('#columns', function() {
     it('returns an array of columns', function() {
-      expect(board.columns()).toEqual([0, 1, 2]);  
+      expect(board.columns()).toEqual([0, 1, 2]);
     });
   });
 

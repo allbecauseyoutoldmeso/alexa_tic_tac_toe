@@ -7,7 +7,7 @@ function eventHandler(event, context) {
               context.succeed(buildResponse(event.session.attributes, speechletResponse));
             });
         } else if (event.request.type === 'IntentRequest') {
-            onIntent(event.request, function callback(speechletResponse) {
+            intentHandler(event.request, function callback(speechletResponse) {
               context.succeed(buildResponse(event.session.attributes, speechletResponse));
             });
         }
@@ -21,7 +21,7 @@ function welcome(callback) {
     callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell.  for example top left or middle right or bottom middle', false));
 }
 
-function onIntent(intentRequest, callback) {
+function intentHandler(intentRequest, callback) {
   var intentName = intentRequest.intent.name;
   if (intentName == 'PlayIntent') {
     play(callback);

@@ -31,7 +31,7 @@
 
   };
 
-  Board.prototype.rowWin = function(row, symbol) {
+  Board.prototype.singleRowWin = function(row, symbol) {
     return row.every(function checkCell(cell) { return cell === symbol; });
   };
 

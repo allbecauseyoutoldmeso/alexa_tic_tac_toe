@@ -39,4 +39,13 @@ describe('Board', function() {
     });
   });
 
+  describe('#singleRowWin', function() {
+    it('recognises a win', function() {
+      expect(board.singleRowWin(['x','x','x'],'x')).toBeTruthy();
+    });
+    it('recognises a non win', function() {
+      expect(board.singleRowWin(['x','x','o'],'x')).toBeFalsy();
+    });
+  });
+
 });

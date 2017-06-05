@@ -61,8 +61,8 @@
   // };
 
   Board.prototype.anyDiagonalWin = function(symbol, grid) {
-    return this.dimensions().every(function checkNum(num) {
-      return grid[num][num] === symbol;
+    return this.dimensions().every(function checkCell(cell) {
+      return grid[cell][cell] === symbol;
     });
   };
 

@@ -39,14 +39,6 @@ describe('Board', function() {
     // });
   });
 
-  // describe('#singleRowWin', function() {
-  //   it('recognises a win', function() {
-  //     expect(board.singleRowWin(['x','x','x'],'x')).toBeTruthy();
-  //   });
-  //   it('recognises a non win', function() {
-  //     expect(board.singleRowWin(['x','x','o'],'x')).toBeFalsy();
-  //   });
-  // });
 
   describe('#anyRowWin', function() {
     it('returns true if player has a row', function() {
@@ -60,6 +52,21 @@ describe('Board', function() {
                                             ['x', 'x', 'x'],
                                             ['', 'o', '']]);
       expect(board.anyRowWin('o')).toBeFalsy();
+    });
+  });
+
+  describe('#anyColumnWin', function() {
+    it('returns true if player has a column', function() {
+      spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
+                                            ['x', 'x', 'o'],
+                                            ['x', 'o', '']]);
+      expect(board.anyColumnWin('x', board.grid())).toBeTruthy();
+    });
+    it('returns false if player has no column', function() {
+      spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
+                                            ['x', 'x', 'o'],
+                                            ['x', 'o', '']]);
+      expect(board.anyColumnWin('o', board.grid())).toBeFalsy();
     });
   });
 

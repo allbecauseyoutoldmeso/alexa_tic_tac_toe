@@ -48,6 +48,13 @@
     });
   };
 
+
+  Board.prototype.anyDiagonalWin = function(symbol, grid) {
+    return this.dimensions().every(function checkCell(cell) {
+      return grid[cell][cell] === symbol || (grid[0][2] === symbol && grid[1][1] === symbol && grid[2][0] === symbol) ;
+    });
+  };
+
   Board.prototype.dimensions = function() {
     var dimensions = [];
     for(k = 0; k < this._size; k++) {
@@ -55,28 +62,6 @@
     }
     return dimensions;
   };
-
-  // Board.prototype.anyDiagonalWin = function(symbol) {
-  //   return this.grid()[0][0] === symbol && this.grid()[1][1] === symbol && this.grid()[2][2] === symbol;
-  // };
-
-  Board.prototype.anyDiagonalWin = function(symbol, grid) {
-    return this.dimensions().every(function checkCell(cell) {
-      return grid[cell][cell] === symbol;
-    });
-  };
-
-  // Board.prototype.singleColumnWin = function(column, symbol) {
-  //   return this.grid().every(function checkRow(row) { return row[column] === symbol; });
-  // };
-
-  // Board.prototype.anyRowWin = function(symbol) {
-  //   return this._grid.some(function checkRow(row) { return this.singleRowWin(row, symbol); });
-  // };
-
-  // Board.prototype.singleRowWin = function(row, symbol) {
-  //   return row.every(function checkCell(cell) { return cell === symbol; });
-  // };
 
   exports.Board = Board;
 })(this);

@@ -77,6 +77,12 @@ describe('Board', function() {
                                             ['o', 'o', 'x']]);
       expect(board.anyDiagonalWin('x', board.grid())).toBeTruthy();
     });
+    it('returns true if player has a reverse diagonal', function() {
+      spyOn(board, 'grid').and.returnValue([['o', 'o', 'x'],
+                                            ['', 'x', 'o'],
+                                            ['x', 'o', 'x']]);
+      expect(board.anyDiagonalWin('x', board.grid())).toBeTruthy();
+    });
     it('returns false if player has no diagonal', function() {
       spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
                                             ['x', 'x', 'o'],

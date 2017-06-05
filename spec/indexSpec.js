@@ -29,7 +29,7 @@ describe('#sequence of a playIntent', function() {
     eventHandler(topLeftEvent(), alexaContext());
     expect(self.game.board().grid()).toEqual([['x', '', ''],
                                               ['', '', ''],
-                                              ['', '', '']]);
+                                              ['', '', 'o']]);
   });
   it('an error is raised if the player tries to take a cell that is not free', function() {
     spyOn(self, 'buildSpeechResponse');

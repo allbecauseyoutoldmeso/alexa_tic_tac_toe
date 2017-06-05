@@ -16,7 +16,6 @@ function eventHandler(event, context) {
     }
 }
 
-
 function welcome(callback) {
     this.game = new Game(3);
     callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column .  for example top left or middle right or bottom middle', false));
@@ -44,7 +43,9 @@ function play(row, column, callback) {
     callback(buildSpeechResponse('that cell is already taken', '', 'false'));
   } else {
     this.game.playerPlay(rows[row], columns[column]);
-    callback(buildSpeechResponse('you played ' + row + ' ' + column, '', 'false'));
+    var robotChoice = this.game.robotChoose();
+    this.game.board().take(robotChoice[0], robotChoice[1], 'o');
+    callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
   }
 }
 
@@ -166,6 +167,18 @@ Game.prototype.robotPlay = function() {
     this.robotPlay();
   } else {
     this._board.take(row, column, this._robot.symbol());
+  }
+};
+
+//scrap the below and use the above with a callback, duh!  likewise with playerPlay you should be able to utilize built in error message by callbacking!
+
+Game.prototype.robotChoose = function() {
+  var row = this._robot.choice(this._boardSize);
+  var column = this._robot.choice(this._boardSize);
+  if(this._board.grid()[row][column] !== '') {
+    this.robotChoose();
+  } else {
+    return [row, column];
   }
 };
 

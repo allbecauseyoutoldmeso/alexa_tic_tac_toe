@@ -27,8 +27,7 @@ describe('#intentHandler', function() {
   it('recognises a playIntent and triggers a move', function() {
     eventHandler(launchIntentEvent(), alexaContext());
     eventHandler(topLeftEvent(), alexaContext());
-    console.log(self.game.board());
-    expect(self.game._board._grid).toEqual([['x', '', ''],
+    expect(self.game.board().grid()).toEqual([['x', '', ''],
                                               ['', '', ''],
                                               ['', '', '']]);
   });

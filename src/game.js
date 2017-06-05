@@ -8,6 +8,10 @@
     this._currentPlayer = this._player;
   }
 
+  Game.prototype.board = function() {
+    return this._board;
+  };
+
   Game.prototype.switchPlayer = function() {
     this._currentPlayer === this._player ? this._currentPlayer = this._robot : this._currentPlayer = this._player;
   };

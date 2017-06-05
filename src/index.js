@@ -40,8 +40,12 @@ function intentHandler(intentRequest, callback) {
 function play(row, column, callback) {
   var rows = {top: 0, middle: 1, bottom: 2};
   var columns = {left: 0, middle: 1, right: 2};
-  this.game.playerPlay(rows[row], columns[column]);
-  callback(buildSpeechResponse('you played ' + row + ' ' + column, '', 'false'));
+  if(this.game.board().grid()[rows[row]][columns[column]] !== '') {
+    callback(buildSpeechResponse('that cell is already taken', '', 'false'));
+  } else {
+    this.game.playerPlay(rows[row], columns[column]);
+    callback(buildSpeechResponse('you played ' + row + ' ' + column, '', 'false'));
+  }
 }
 
 function buildSpeechResponse(output, repromptText, shouldEndSession) {

@@ -31,4 +31,11 @@ describe('#sequence of a playIntent', function() {
                                               ['', '', ''],
                                               ['', '', '']]);
   });
+  it('an error is raised if the player tries to take a cell that is not free', function() {
+    spyOn(self, 'buildSpeechResponse');
+    eventHandler(launchIntentEvent(), alexaContext());
+    eventHandler(topLeftEvent(), alexaContext());
+    eventHandler(topLeftEvent(), alexaContext());
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('that cell is already taken', '', 'false');
+  });
 });

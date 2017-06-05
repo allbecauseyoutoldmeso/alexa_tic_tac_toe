@@ -18,22 +18,18 @@ function eventHandler(event, context) {
 
 
 function welcome(callback) {
-    self.game = new Game(3);
+    this.game = new Game(3);
     callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column .  for example top left or middle right or bottom middle', false));
 }
 
 function intentHandler(intentRequest, callback) {
-  console.log('i was called');
-  console.log(intentRequest);
-  console.log(intentRequest.intent.name);
+
   var intentName = intentRequest.intent.name;
-  console.log(intentName);
-  console.log(intentRequest.intent.slots.row.value);
+
   var row = intentRequest.intent.slots.row.value;
-  console.log(row);
-  console.log(intentRequest.intent.slots.column.value);
+
   var column = intentRequest.intent.slots.column.value;
-  console.log(column);
+
   if (intentName == 'PlayIntent') {
     play(row, column, callback);
   } else {
@@ -42,15 +38,10 @@ function intentHandler(intentRequest, callback) {
 }
 
 function play(row, column, callback) {
-  console.log('play...')
-  console.log('column ' + column)
-  console.log('row ' + row)
   var rows = {top: 0, middle: 1, bottom: 2};
   var columns = {left: 0, middle: 1, right: 2};
-  console.log(rows[row]);
-  console.log(columns[column]);
-  self.game.playerPlay(rows[row], columns[column]);
-  callback(buildSpeechResponse('you played' + row + column, '', 'false'));
+  this.game.playerPlay(rows[row], columns[column]);
+  callback(buildSpeechResponse('you played ' + row + ' ' + column, '', 'false'));
 }
 
 function buildSpeechResponse(output, repromptText, shouldEndSession) {

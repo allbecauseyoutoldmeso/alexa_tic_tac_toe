@@ -23,8 +23,8 @@ describe('#welcome', function() {
   });
 });
 
-describe('#intentHandler', function() {
-  it('recognises a playIntent and triggers a move', function() {
+describe('#sequence of a playIntent', function() {
+  it('a playIntent changes the requested cell on the board', function() {
     eventHandler(launchIntentEvent(), alexaContext());
     eventHandler(topLeftEvent(), alexaContext());
     expect(self.game.board().grid()).toEqual([['x', '', ''],

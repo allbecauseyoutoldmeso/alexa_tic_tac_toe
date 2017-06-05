@@ -41,19 +41,19 @@
   };
 
   Board.prototype.anyColumnWin = function(symbol, grid) {
-    return this.columns().some(function checkColumn(column) {
+    return this.dimensions().some(function checkColumn(column) {
       return grid.every(function checkRow(row) {
         return row[column] === symbol;
       });
     });
   };
 
-  Board.prototype.columns = function() {
-    var columns = [];
+  Board.prototype.dimensions = function() {
+    var dimensions = [];
     for(k = 0; k < this._size; k++) {
-      columns.push(k);
+      dimensions.push(k);
     }
-    return columns;
+    return dimensions;
   };
 
   // Board.prototype.anyDiagonalWin = function(symbol) {
@@ -61,7 +61,7 @@
   // };
 
   Board.prototype.anyDiagonalWin = function(symbol, grid) {
-    return this.columns().every(function checkNum(num) {
+    return this.dimensions().every(function checkNum(num) {
       return grid[num][num] === symbol;
     });
   };

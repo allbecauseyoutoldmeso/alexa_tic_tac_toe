@@ -83,13 +83,11 @@ describe('Board', function() {
                                             ['o', 'o', 'x']]);
       expect(board.anyDiagonalWin('o', board.grid())).toBeFalsy();
     });
+  });
 
-
-  })
-
-  describe('#columns', function() {
+  describe('#dimensions', function() {
     it('returns an array of columns', function() {
-      expect(board.columns()).toEqual([0, 1, 2]);
+      expect(board.dimensions()).toEqual([0, 1, 2]);
     });
   });
 

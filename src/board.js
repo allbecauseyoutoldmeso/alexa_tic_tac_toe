@@ -56,6 +56,16 @@
     return columns;
   };
 
+  // Board.prototype.anyDiagonalWin = function(symbol) {
+  //   return this.grid()[0][0] === symbol && this.grid()[1][1] === symbol && this.grid()[2][2] === symbol;
+  // };
+
+  Board.prototype.anyDiagonalWin = function(symbol, grid) {
+    return this.columns().every(function checkNum(num) {
+      return grid[num][num] === symbol;
+    });
+  };
+
   // Board.prototype.singleColumnWin = function(column, symbol) {
   //   return this.grid().every(function checkRow(row) { return row[column] === symbol; });
   // };

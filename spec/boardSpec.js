@@ -70,6 +70,23 @@ describe('Board', function() {
     });
   });
 
+  describe('#anyDiagonalWin', function() {
+    it('returns true if player has a diagonal', function() {
+      spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
+                                            ['x', 'x', 'o'],
+                                            ['o', 'o', 'x']]);
+      expect(board.anyDiagonalWin('x', board.grid())).toBeTruthy();
+    });
+    it('returns false if player has no diagonal', function() {
+      spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
+                                            ['x', 'x', 'o'],
+                                            ['o', 'o', 'x']]);
+      expect(board.anyDiagonalWin('o', board.grid())).toBeFalsy();
+    });
+
+
+  })
+
   describe('#columns', function() {
     it('returns an array of columns', function() {
       expect(board.columns()).toEqual([0, 1, 2]);

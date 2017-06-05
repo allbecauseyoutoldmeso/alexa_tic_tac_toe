@@ -18,7 +18,7 @@ function eventHandler(event, context) {
 
 
 function welcome(callback) {
-    callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell.  for example top left or middle right or bottom middle', false));
+    callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column .  for example top left or middle right or bottom middle', false));
 }
 
 function intentHandler(intentRequest, callback) {

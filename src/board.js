@@ -51,7 +51,7 @@
 
   Board.prototype.anyDiagonalWin = function(symbol, grid) {
     return this.dimensions().every(function checkCell(cell) {
-      return grid[cell][cell] === symbol || (grid[0][2] === symbol && grid[1][1] === symbol && grid[2][0] === symbol) ;
+      return grid[cell][cell] === symbol || grid[cell][(grid.length-1)-cell] === symbol ;
     });
   };
 

@@ -1,0 +1,14 @@
+PlayIntent {row} {column}
+PlayIntent take {row} {column}
+PlayIntent mark {row} {column}
+PlayIntent play {row} {column}
+
+LIST_OF_ROWS
+top
+middle
+bottom
+
+LIST_OF_COLUMNS
+left
+middle
+right

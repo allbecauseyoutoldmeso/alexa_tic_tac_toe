@@ -1,7 +1,9 @@
-exports.handler = function (event, context) {
+exports.handler = function(event, context) { eventHandler(event, context) };
+
+function eventHandler(event, context) {
     try {
         if (event.request.type === 'LaunchRequest') {
-            onLaunch(function callback(speechletResponse) {
+            welcome(function callback(speechletResponse) {
               context.succeed(buildResponse(event.session.attributes, speechletResponse));
             });
         } else if (event.request.type === 'IntentRequest') {
@@ -12,11 +14,11 @@ exports.handler = function (event, context) {
     } catch (e) {
         context.fail('Exception: ' + e);
     }
-};
+}
 
 
-function onLaunch(callback) {
-    callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell.  for example top left or middle right or bottom middle', true));
+function welcome(callback) {
+    callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell.  for example top left or middle right or bottom middle', false));
 }
 
 function onIntent(intentRequest, callback) {
@@ -29,7 +31,7 @@ function onIntent(intentRequest, callback) {
 }
 
 function play(callback) {
-  callback(buildSpeechResponse('you made a move', '', 'true'));
+  callback(buildSpeechResponse('you made a move', '', 'false'));
 }
 
 function buildSpeechResponse(output, repromptText, shouldEndSession) {

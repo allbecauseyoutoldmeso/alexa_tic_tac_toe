@@ -5,7 +5,7 @@
     for(i = 0; i < size; i++) {
       this._grid.push(makeRow(size));
     }
-    this._size = size - 1;
+    this._size = size;
   }
 
   function makeRow(length) {
@@ -41,16 +41,24 @@
   };
 
   Board.prototype.anyColumnWin = function(symbol, grid) {
-    return [0, 1, 2].some(function checkColumn(column) {
+    return this.columns().some(function checkColumn(column) {
       return grid.every(function checkRow(row) {
         return row[column] === symbol;
       });
     });
   };
 
-  Board.prototype.singleColumnWin = function(column, symbol) {
-    return this.grid().every(function checkRow(row) { return row[column] === symbol; });
+  Board.prototype.columns = function() {
+    var columns = [];
+    for(k = 0; k < this._size; k++) {
+      columns.push(k);
+    }
+    return columns;
   };
+
+  // Board.prototype.singleColumnWin = function(column, symbol) {
+  //   return this.grid().every(function checkRow(row) { return row[column] === symbol; });
+  // };
 
   // Board.prototype.anyRowWin = function(symbol) {
   //   return this._grid.some(function checkRow(row) { return this.singleRowWin(row, symbol); });

@@ -70,4 +70,10 @@ describe('Board', function() {
     });
   });
 
+  describe('#columns', function() {
+    it('returns an array of columns', function() {
+      expect(board.columns()).toEqual([0, 1, 2]);  
+    });
+  });
+
 });

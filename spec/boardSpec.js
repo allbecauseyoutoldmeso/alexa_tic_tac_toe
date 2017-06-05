@@ -31,20 +31,35 @@ describe('Board', function() {
                                             ['', 'o', '']]);
       expect(board.hasWon('x')).toBeTruthy();
     });
-    it('returns true if player has a column', function() {
-      spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
-                                            ['x', 'o', 'o'],
-                                            ['x', 'x', '']]);
-      expect(board.hasWon('x')).toBeTruthy();
-    });
+    // it('returns true if player has a column', function() {
+    //   spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
+    //                                         ['x', 'o', 'o'],
+    //                                         ['x', 'x', '']]);
+    //   expect(board.hasWon('x')).toBeTruthy();
+    // });
   });
 
-  describe('#singleRowWin', function() {
-    it('recognises a win', function() {
-      expect(board.singleRowWin(['x','x','x'],'x')).toBeTruthy();
+  // describe('#singleRowWin', function() {
+  //   it('recognises a win', function() {
+  //     expect(board.singleRowWin(['x','x','x'],'x')).toBeTruthy();
+  //   });
+  //   it('recognises a non win', function() {
+  //     expect(board.singleRowWin(['x','x','o'],'x')).toBeFalsy();
+  //   });
+  // });
+
+  describe('#anyRowWin', function() {
+    it('returns true if player has a row', function() {
+      spyOn(board, 'grid').and.returnValue([['o', 'o', 'x'],
+                                            ['x', 'x', 'x'],
+                                            ['', 'o', '']]);
+      expect(board.anyRowWin('x')).toBeTruthy();
     });
-    it('recognises a non win', function() {
-      expect(board.singleRowWin(['x','x','o'],'x')).toBeFalsy();
+    it('returns false if player has no row', function() {
+      spyOn(board, 'grid').and.returnValue([['o', 'o', 'x'],
+                                            ['x', 'x', 'x'],
+                                            ['', 'o', '']]);
+      expect(board.anyRowWin('o')).toBeFalsy();
     });
   });
 

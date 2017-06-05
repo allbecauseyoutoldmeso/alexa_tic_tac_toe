@@ -28,12 +28,24 @@
   };
 
   Board.prototype.hasWon = function(symbol) {
-
+    return this.anyRowWin(symbol);
   };
 
-  Board.prototype.singleRowWin = function(row, symbol) {
-    return row.every(function checkCell(cell) { return cell === symbol; });
+  // Board.prototype.anyRowWin = function(symbol) {
+  //   return this._grid.some(function checkRow(row) { return this.singleRowWin(row, symbol); });
+  // };
+
+  Board.prototype.anyRowWin = function(symbol) {
+    return this.grid().some(function checkRow(row) {
+      return row.every(function checkCell(cell) {
+        return cell === symbol;
+      });
+    });
   };
+
+  // Board.prototype.singleRowWin = function(row, symbol) {
+  //   return row.every(function checkCell(cell) { return cell === symbol; });
+  // };
 
   exports.Board = Board;
 })(this);

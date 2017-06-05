@@ -28,7 +28,13 @@ describe('Board', function() {
     it('returns true if player has a row', function() {
       spyOn(board, 'grid').and.returnValue([['o', 'o', 'x'],
                                             ['x', 'x', 'x'],
-                                            ['0', 'o', '']]);
+                                            ['', 'o', '']]);
+      expect(board.hasWon('x')).toBeTruthy();
+    });
+    it('returns true if player has a column', function() {
+      spyOn(board, 'grid').and.returnValue([['x', 'o', ''],
+                                            ['x', 'o', 'o'],
+                                            ['x', 'x', '']]);
       expect(board.hasWon('x')).toBeTruthy();
     });
   });

@@ -109,4 +109,19 @@ describe('Board', function() {
     });
   });
 
+  describe('#isFull', function() {
+    it('returns true if all cells are marked', function() {
+      spyOn(board, 'grid').and.returnValue([['x', 'o', 'x'],
+                                            ['x', 'x', 'o'],
+                                            ['o', 'o', 'x']]);
+      expect(board.isFull()).toBeTruthy();
+    });
+    it('returns false if not all cells are marked', function() {
+      spyOn(board, 'grid').and.returnValue([['x', '', 'x'],
+                                            ['x', 'x', 'o'],
+                                            ['o', 'o', 'x']]);
+      expect(board.isFull()).toBeFalsy();
+    });
+  });
+
 });

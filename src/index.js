@@ -18,7 +18,7 @@ function eventHandler(event, context) {
 
 function welcome(callback) {
   this.game = new Game(3);
-  callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column .  for example top left or middle right or bottom middle', false));
+  callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column.  for example top left or middle right or bottom middle', false));
 }
 
 function intentHandler(intentRequest, callback) {
@@ -33,10 +33,10 @@ function intentHandler(intentRequest, callback) {
 }
 
 Game.prototype.playerPlay = function(row, column, callback) {
-  var rows = {top: 0, middle: 1, bottom: 2};
-  var columns = {left: 0, middle: 1, right: 2};
+  var rows = {'top': 0, 'middle': 1, 'bottom': 2};
+  var columns = {'left': 0, 'middle': 1, 'right': 2};
   if(this._board.grid()[rows[row]][columns[column]] !== '') {
-    callback(buildSpeechResponse('that cell is already taken', '', 'false'));
+    callback(buildSpeechResponse('that cell is already taken', 'select another cell', 'false'));
   } else {
     this._board.take(rows[row], columns[column], this._player.symbol());
     this.playerPlayOutcomes(row, column, callback);
@@ -60,15 +60,17 @@ Game.prototype.robotPlay = function(playerRow, playerColumn, callback) {
     this.robotPlay(playerRow, playerColumn, callback);
   } else {
     this._board.take(robotRow, robotColumn, this._robot.symbol());
-    this.robotPlayOutcomes(playerRow, playerColumn, robotRow, robotColumn, callback)  
+    this.robotPlayOutcomes(playerRow, playerColumn, robotRow, robotColumn, callback);
   }
 };
 
 Game.prototype.robotPlayOutcomes = function(playerRow, playerColumn, robotRow, robotColumn, callback) {
+  var rows = ['top', 'middle', 'bottom'];
+  var columns = ['left', 'middle', 'right'];
   if(this._board.hasWon('o')) {
-    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn + '.  the computer won.', '', 'true'));
+    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + rows[robotRow] + ' ' + columns[robotColumn] + '.  the computer won.', '', 'true'));
   } else {
-    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
+    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + rows[robotRow] + ' ' + columns[robotColumn], 'select another cell by row and column', 'false'));
   }
 };
 

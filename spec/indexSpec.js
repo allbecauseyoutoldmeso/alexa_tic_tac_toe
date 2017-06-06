@@ -15,7 +15,7 @@ describe('#welcome', function() {
   it('returns a greeting', function() {
     var callback = jasmine.createSpy('callback');
     welcome(callback);
-    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column .  for example top left or middle right or bottom middle', false));
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column.  for example top left or middle right or bottom middle', false));
   });
   it('initiates a game', function() {
     var callback = jasmine.createSpy('callback');
@@ -49,7 +49,7 @@ describe('#sequence of a playIntent', function() {
     eventHandler(launchIntentEvent(), alexaContext());
     eventHandler(topLeftEvent(), alexaContext());
     eventHandler(topLeftEvent(), alexaContext());
-    expect(self.buildSpeechResponse).toHaveBeenCalledWith('that cell is already taken', '', 'false');
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('that cell is already taken', 'select another cell', 'false');
   });
   it('generates a win message if the player has won', function() {
     self.game = new Game(3);
@@ -70,6 +70,6 @@ describe('#sequence of a playIntent', function() {
     self.game._board._grid = [['','o','x'], ['x','o','o'], ['o','','x']];
     spyOn(self, 'buildSpeechResponse');
     eventHandler(topLeftEvent(), alexaContext());
-    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  the computer played 2 1.  the computer won.', '', 'true');
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  the computer played bottom middle.  the computer won.', '', 'true');
   });
 });

@@ -34,7 +34,7 @@ describe('Game', function() {
       var callback = jasmine.createSpy('callback');
       game.playerPlay('top', 'right', function callback(x) { dummyCallback(x); });
       game.playerPlay('top', 'right', callback);
-      expect(callback).toHaveBeenCalledWith(buildSpeechResponse('that cell is already taken', '', 'false'));
+      expect(callback).toHaveBeenCalledWith(buildSpeechResponse('that cell is already taken', 'select another cell', 'false'));
     });
   });
 

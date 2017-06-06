@@ -6,7 +6,7 @@ A simple Alexa skill written in Javascript.
 
 Enables the user to play a game of Tic-Tac-Toe with Alexa.
 
-'Alexa, open tic-tac-toe.'  
+'Alexa, open Tic-Tac-Toe.'  
 *'Welcome to Tic-Tac-Toe...Select a cell by row and column.  For example top left, or middle right, or bottom middle.'*  
 'Top right'  
 *'You played top right.  The computer played middle middle.'*  

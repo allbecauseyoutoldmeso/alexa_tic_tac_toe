@@ -36,10 +36,13 @@ describe('#sequence of a playIntent', function() {
     expect(self.buildSpeechResponse).toHaveBeenCalled();
   });
   it('the robot also plays', function() {
-    spyOn(self.game._robot, 'choice').and.returnValue(2);
     eventHandler(launchIntentEvent(), alexaContext());
     eventHandler(topLeftEvent(), alexaContext());
-    expect(self.game.board().grid()[2][2]).toEqual('o');
+    expect(self.game.board().grid().some(function checkRow(row) {
+      return row.some(function checkCell(cell) {
+        return cell === 'o';
+      });
+    })).toBeTruthy();
   });
   it('an error is raised if the player tries to take a cell that is not free', function() {
     spyOn(self, 'buildSpeechResponse');

@@ -3,7 +3,7 @@ describe('Game', function() {
   var game;
   beforeEach(function() {
     game = new Game(3);
-    dummyCallback = function(x) { console.log(x); };
+    dummyCallback = function(x) { };
   });
 
   it('is initialized with a board', function() {
@@ -54,5 +54,4 @@ describe('Game', function() {
                                           ['x', 'x', 'o']]);
     });
   });
-
 });

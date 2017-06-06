@@ -26,10 +26,8 @@ describe('Game', function() {
 
   describe('#playerPlay', function() {
     it('marks the board with an x', function() {
-      game.playerPlay(0,2);
-      expect(game._board.grid()).toEqual([['', '', 'x'],
-                                         ['', '', ''],
-                                         ['', '', '']]);
+      game.playerPlay('top', 'right', function callback(x,y,z) { function dummyCallback(x,y,z) { } });
+      expect(game._board.grid()[0][2]).toEqual('x');
     });
     it('does a different thing if the cell is already taken', function() {
       spyOn(game, 'explainMistake');
@@ -62,19 +60,5 @@ describe('Game', function() {
                                           ['x', 'x', 'o']]);
     });
   });
-
-  // describe('#robotChoose', function() {
-  //   it('marks the board with a o', function() {
-  //     spyOn(game._robot, 'choice').and.returnValue(0);
-  //     expect(game.robotChoose()).toEqual([0,0]);
-  //   });
-  //   it('continues looping until it locates a free cell', function() {
-  //     spyOn(game._board, 'grid').and.returnValue([['x', 'x', 'x'],
-  //                                                 ['x', 'x', 'x'],
-  //                                                 ['x', 'x', '']]);
-  //     expect(game.robotChoose()).toEqual([2,2]);
-  //   });
-  // });
-
 
 });

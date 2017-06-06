@@ -25,10 +25,21 @@ describe('#welcome', function() {
 
 describe('#sequence of a playIntent', function() {
   it('a playIntent changes the requested cell on the board', function() {
-    spyOn(self.game._robot, 'choice').and.returnValue(2)
     eventHandler(launchIntentEvent(), alexaContext());
     eventHandler(topLeftEvent(), alexaContext());
     expect(self.game.board().grid()[0][0]).toEqual('x');
+  });
+  it('the player gets a confirmation message', function() {
+    spyOn(self, 'buildSpeechResponse');
+    eventHandler(launchIntentEvent(), alexaContext());
+    eventHandler(topLeftEvent(), alexaContext());
+    expect(self.buildSpeechResponse).toHaveBeenCalled();
+  });
+  it('the robot also plays', function() {
+    spyOn(self.game._robot, 'choice').and.returnValue(2);
+    eventHandler(launchIntentEvent(), alexaContext());
+    eventHandler(topLeftEvent(), alexaContext());
+    expect(self.game.board().grid()[2][2]).toEqual('o');
   });
   it('an error is raised if the player tries to take a cell that is not free', function() {
     spyOn(self, 'buildSpeechResponse');

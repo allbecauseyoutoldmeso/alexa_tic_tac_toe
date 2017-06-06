@@ -31,20 +31,6 @@ function intentHandler(intentRequest, callback) {
     throw 'Invalid intent';
   }
 }
-// function play(row, column, callback) {
-//   var rows = {top: 0, middle: 1, bottom: 2};
-//   var columns = {left: 0, middle: 1, right: 2};
-
-  // if(this.game.board().grid()[rows[row]][columns[column]] !== '') {
-  //   callback(buildSpeechResponse('that cell is already taken', '', 'false'));
-  // } else {
-  //   this.game.playerPlay(rows[row], columns[column]);
-  //   var robotChoice = this.game.robotChoose();
-  //   this.game.board().take(robotChoice[0], robotChoice[1], 'o');
-  //   callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
-  // }
-// }
-
 
 Game.prototype.playerPlay = function(row, column, callback) {
   var rows = {top: 0, middle: 1, bottom: 2};
@@ -176,39 +162,6 @@ Game.prototype.switchPlayer = function() {
   this._currentPlayer === this._player ? this._currentPlayer = this._robot : this._currentPlayer = this._player;
 };
 
-// Game.prototype.playerPlay = function(row, column) {
-//   if(this._board.grid()[row][column] !== '') {
-//     this.explainMistake();
-//   } else {
-//     this._board.take(row, column, this._player.symbol());
-//   }
-// };
-//
-// Game.prototype.robotPlay = function() {
-//   var row = this._robot.choice(this._boardSize);
-//   var column = this._robot.choice(this._boardSize);
-//   if(this._board.grid()[row][column] !== '') {
-//     this.robotPlay();
-//   } else {
-//     this._board.take(row, column, this._robot.symbol());
-//   }
-// };
-
-//scrap the below and use the above with a callback, duh!  likewise with playerPlay you should be able to utilize built in error message by callbacking!
-
-// Game.prototype.robotChoose = function() {
-//   var row = this._robot.choice(this._boardSize);
-//   var column = this._robot.choice(this._boardSize);
-//   if(this._board.grid()[row][column] !== '') {
-//     this.robotChoose();
-//   } else {
-//     return [row, column];
-//   }
-// };
-
-// Game.prototype.explainMistake = function() {
-//
-// };
 
 function Player() {
   this._points = 0;

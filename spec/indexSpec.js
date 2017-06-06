@@ -28,9 +28,7 @@ describe('#sequence of a playIntent', function() {
     spyOn(self.game._robot, 'choice').and.returnValue(2)
     eventHandler(launchIntentEvent(), alexaContext());
     eventHandler(topLeftEvent(), alexaContext());
-    expect(self.game.board().grid()).toEqual([['x', '', ''],
-                                              ['', '', ''],
-                                              ['', '', 'o']]);
+    expect(self.game.board().grid()[0][0]).toEqual('x');
   });
   it('an error is raised if the player tries to take a cell that is not free', function() {
     spyOn(self, 'buildSpeechResponse');

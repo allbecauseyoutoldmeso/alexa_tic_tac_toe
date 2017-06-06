@@ -30,11 +30,11 @@ describe('Game', function() {
       game.playerPlay('top', 'right', function callback(x) { dummyCallback(x); });
       expect(game._board.grid()[0][2]).toEqual('x');
     });
-    it('does a different thing if the cell is already taken', function() {
-      spyOn(game, 'explainMistake');
+    it('lets the player know if a cell is already taken', function() {
+      var callback = jasmine.createSpy('callback');
       game.playerPlay('top', 'right', function callback(x) { dummyCallback(x); });
-      game.playerPlay('top', 'right', function callback(x) { dummyCallback(x); });
-      expect(game.explainMistake).toHaveBeenCalled();
+      game.playerPlay('top', 'right', callback);
+      expect(callback).toHaveBeenCalledWith(buildSpeechResponse('that cell is already taken', '', 'false'));
     });
   });
 

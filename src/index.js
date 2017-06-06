@@ -36,7 +36,7 @@ Game.prototype.playerPlay = function(row, column, callback) {
   var rows = {top: 0, middle: 1, bottom: 2};
   var columns = {left: 0, middle: 1, right: 2};
   if(this._board.grid()[rows[row]][columns[column]] !== '') {
-    this.explainMistake(callback);
+    callback(buildSpeechResponse('that cell is already taken', '', 'false'));
   } else {
     this._board.take(rows[row], columns[column], this._player.symbol());
     this.playerPlayOutcomes(row, column, callback);
@@ -53,10 +53,6 @@ Game.prototype.playerPlayOutcomes = function(row, column, callback) {
   }
 };
 
-Game.prototype.explainMistake = function(callback) {
-  callback(buildSpeechResponse('that cell is already taken', '', 'false'));
-};
-
 Game.prototype.robotPlay = function(playerRow, playerColumn, callback) {
   var robotRow = this._robot.choice(this._boardSize);
   var robotColumn = this._robot.choice(this._boardSize);
@@ -64,7 +60,11 @@ Game.prototype.robotPlay = function(playerRow, playerColumn, callback) {
     this.robotPlay(playerRow, playerColumn, callback);
   } else {
     this._board.take(robotRow, robotColumn, this._robot.symbol());
-    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
+    if(this._board.hasWon('o')) {
+      callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn + '.  the computer won', '', 'true'));
+    } else {
+      callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
+    }
   }
 };
 

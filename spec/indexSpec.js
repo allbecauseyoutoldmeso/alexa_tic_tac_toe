@@ -65,4 +65,12 @@ describe('#sequence of a playIntent', function() {
     eventHandler(topLeftEvent(), alexaContext());
     expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  the game is a draw.', '', 'true');
   });
+  it('generates a lose message if the computer won', function() {
+    self.game = new Game(3);
+    self.game._board._grid = [['','o','x'], ['x','o','o'], ['o','','x']];
+    spyOn(self, 'buildSpeechResponse');
+    eventHandler(topLeftEvent(), alexaContext());
+    console.log(self.game._board._grid)
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  the computer played 2 1.  the computer won', '', 'true');
+  });
 });

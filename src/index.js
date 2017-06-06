@@ -32,6 +32,17 @@ function intentHandler(intentRequest, callback) {
   }
 }
 
+function Game(boardSize) {
+  this._boardSize = boardSize;
+  this._board = new Board(boardSize);
+  this._player = new Player();
+  this._robot = new Robot();
+}
+
+Game.prototype.board = function() {
+  return this._board;
+};
+
 Game.prototype.playerPlay = function(row, column, callback) {
   var rows = {'top': 0, 'middle': 1, 'bottom': 2};
   var columns = {'left': 0, 'middle': 1, 'right': 2};
@@ -74,30 +85,6 @@ Game.prototype.robotPlayOutcomes = function(playerRow, playerColumn, robotRow, r
   }
 };
 
-function buildSpeechResponse(output, repromptText, shouldEndSession) {
-    return {
-        outputSpeech: {
-            type: 'PlainText',
-            text: output
-        },
-        reprompt: {
-            outputSpeech: {
-                type: 'PlainText',
-                text: repromptText
-            }
-        },
-        shouldEndSession: shouldEndSession
-    };
-}
-
-function buildResponse(sessionAttributes, speechletResponse) {
-    return {
-        version: '1.0',
-        sessionAttributes: sessionAttributes,
-        response: speechletResponse
-    };
-}
-
 function Board(size) {
   this._grid = [];
   for(i = 0; i < size; i++) {
@@ -129,7 +116,6 @@ Board.prototype.hasWon = function(symbol) {
   return this.anyRowWin(symbol) || this.anyColumnWin(symbol, this.grid()) || this.anyDiagonalWin(symbol, this.grid());
 };
 
-
 Board.prototype.anyRowWin = function(symbol) {
   return this.grid().some(function checkRow(row) {
     return row.every(function checkCell(cell) {
@@ -145,7 +131,6 @@ Board.prototype.anyColumnWin = function(symbol, grid) {
     });
   });
 };
-
 
 Board.prototype.anyDiagonalWin = function(symbol, grid) {
   return this.dimensions().every(function checkCell(cell) {
@@ -169,50 +154,15 @@ Board.prototype.isFull = function() {
   });
 };
 
-function Game(boardSize) {
-  this._boardSize = boardSize;
-  this._board = new Board(boardSize);
-  this._player = new Player();
-  this._robot = new Robot();
-  this._currentPlayer = this._player;
-}
-
-Game.prototype.board = function() {
-  return this._board;
-};
-
-Game.prototype.switchPlayer = function() {
-  this._currentPlayer === this._player ? this._currentPlayer = this._robot : this._currentPlayer = this._player;
-};
-
-
 function Player() {
-  this._points = 0;
 }
-
-Player.prototype.points = function() {
-  return this._points;
-};
-
-Player.prototype.addPoints = function(points) {
-  this._points += points;
-};
 
 Player.prototype.symbol = function() {
   return 'x';
 };
 
 function Robot() {
-  this._points = 0;
 }
-
-Robot.prototype.points = function() {
-  return this._points;
-};
-
-Robot.prototype.addPoints = function(points) {
-  this._points += points;
-};
 
 Robot.prototype.symbol = function() {
   return 'o';
@@ -221,3 +171,27 @@ Robot.prototype.symbol = function() {
 Robot.prototype.choice = function(size) {
   return Math.floor(Math.random() * size);
 };
+
+function buildSpeechResponse(output, repromptText, shouldEndSession) {
+    return {
+        outputSpeech: {
+            type: 'PlainText',
+            text: output
+        },
+        reprompt: {
+            outputSpeech: {
+                type: 'PlainText',
+                text: repromptText
+            }
+        },
+        shouldEndSession: shouldEndSession
+    };
+}
+
+function buildResponse(sessionAttributes, speechletResponse) {
+    return {
+        version: '1.0',
+        sessionAttributes: sessionAttributes,
+        response: speechletResponse
+    };
+}

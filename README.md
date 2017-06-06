@@ -19,4 +19,4 @@ Enables the user to play a game of Tic-Tac-Toe with Alexa.
 
 ...hours of fun!
 
-Sadly this skill is currently unpublished.  You can clone this repository to run my tests, or if you have an Amazon developer account feel free to copy my code into your own skill and play with it!
+Sadly this skill is currently unpublished.  You can clone this repository to run my tests, or if you have an Amazon developer account feel free to copy my code into your own skill and play with it (nb if you do so you will need to uncomment the first line in index.js, which i commented out as it broke my Jasmine tests.)

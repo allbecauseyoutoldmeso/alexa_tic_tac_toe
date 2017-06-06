@@ -40,7 +40,9 @@ Game.prototype.playerPlay = function(row, column, callback) {
   } else {
     this._board.take(rows[row], columns[column], this._player.symbol());
     if(this._board.hasWon('x')) {
-      callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  you won.', '', 'true'));  
+      callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  you won.', '', 'true'));
+    } else if(this._board.isFull()) {
+      callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  the game is a draw.', '', 'true'));    
     } else {
       this.robotPlay(rows[row], columns[column], callback);
     }

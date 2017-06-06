@@ -58,4 +58,11 @@ describe('#sequence of a playIntent', function() {
     eventHandler(topLeftEvent(), alexaContext());
     expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  you won.', '', 'true');
   });
+  it('generates a draw message if the board is full', function() {
+    self.game = new Game(3);
+    self.game._board._grid = [['','o','x'], ['x','x','o'], ['o','x','o']];
+    spyOn(self, 'buildSpeechResponse');
+    eventHandler(topLeftEvent(), alexaContext());
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  the game is a draw.', '', 'true');
+  });
 });

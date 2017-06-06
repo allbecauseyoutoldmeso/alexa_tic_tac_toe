@@ -54,6 +54,8 @@ Game.prototype.robotPlay = function(playerRow, playerColumn, callback) {
     this.robotPlay(playerRow, playerColumn, callback);
   } else {
     this._board.take(robotRow, robotColumn, this._robot.symbol());
+    console.log(this._board.grid())
+    console.log('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn)
     callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
   }
 };

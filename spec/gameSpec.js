@@ -47,9 +47,7 @@ describe('Game', function() {
                                           ['', '', '']]);
     });
     it('continues looping until it locates a free cell', function() {
-      spyOn(game._board, 'grid').and.returnValue([['x', 'x', 'x'],
-                                                 ['x', 'x', 'x'],
-                                                 ['x', 'x', '']]);
+      game._board._grid =  [['x', 'x', 'x'], ['x', 'x', 'x'], ['x', 'x', '']];
       game.robotPlay(2, 2, function callback(x) { dummyCallback(x); });
       expect(game._board.grid()).toEqual([['x', 'x', 'x'],
                                           ['x', 'x', 'x'],

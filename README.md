@@ -2,7 +2,7 @@
 
 <img width="256" alt="tic_tac_toe_logo" src="https://user-images.githubusercontent.com/25392162/26852510-66ed04ae-4b06-11e7-9ae2-aafd24930d40.png">
 
-A simple alexa skill written in Javascript.
+A simple Alexa skill written in Javascript.
 
 Enables the user to play a game of tic-tac-toe with alexa.
 

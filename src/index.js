@@ -55,7 +55,7 @@ Game.prototype.playerPlay = function(row, column, callback) {
 };
 
 Game.prototype.playerPlayOutcomes = function(row, column, callback) {
-  if(this._board.hasWon('x')) {
+  if(this._board.hasWon(this._player.symbol())) {
     callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  you won.', '', 'true'));
   } else if(this._board.isFull()) {
     callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  the game is a draw.', '', 'true'));
@@ -78,7 +78,7 @@ Game.prototype.robotPlay = function(playerRow, playerColumn, callback) {
 Game.prototype.robotPlayOutcomes = function(playerRow, playerColumn, robotRow, robotColumn, callback) {
   var rows = ['top', 'middle', 'bottom'];
   var columns = ['left', 'middle', 'right'];
-  if(this._board.hasWon('o')) {
+  if(this._board.hasWon(this._robot.symbol())) {
     callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + rows[robotRow] + ' ' + columns[robotColumn] + '.  the computer won.', '', 'true'));
   } else {
     callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + rows[robotRow] + ' ' + columns[robotColumn], 'select another cell by row and column', 'false'));

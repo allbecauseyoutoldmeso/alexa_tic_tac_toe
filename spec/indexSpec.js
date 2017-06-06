@@ -51,4 +51,11 @@ describe('#sequence of a playIntent', function() {
     eventHandler(topLeftEvent(), alexaContext());
     expect(self.buildSpeechResponse).toHaveBeenCalledWith('that cell is already taken', '', 'false');
   });
+  it('generates a win message if the player has won', function() {
+    self.game = new Game(3);
+    self.game._board._grid = [['','',''], ['','x',''], ['','','x']];
+    spyOn(self, 'buildSpeechResponse');
+    eventHandler(topLeftEvent(), alexaContext());
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  you won.', '', 'true');
+  });
 });

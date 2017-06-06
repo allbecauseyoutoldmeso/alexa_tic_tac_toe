@@ -39,7 +39,11 @@ Game.prototype.playerPlay = function(row, column, callback) {
     this.explainMistake(callback);
   } else {
     this._board.take(rows[row], columns[column], this._player.symbol());
-    this.robotPlay(rows[row], columns[column], callback);
+    if(this._board.hasWon('x')) {
+      callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  you won.', '', 'true'));  
+    } else {
+      this.robotPlay(rows[row], columns[column], callback);
+    }
   }
 };
 

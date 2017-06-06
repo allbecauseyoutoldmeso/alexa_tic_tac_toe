@@ -70,7 +70,6 @@ describe('#sequence of a playIntent', function() {
     self.game._board._grid = [['','o','x'], ['x','o','o'], ['o','','x']];
     spyOn(self, 'buildSpeechResponse');
     eventHandler(topLeftEvent(), alexaContext());
-    console.log(self.game._board._grid)
-    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  the computer played 2 1.  the computer won', '', 'true');
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  the computer played 2 1.  the computer won.', '', 'true');
   });
 });

@@ -60,14 +60,17 @@ Game.prototype.robotPlay = function(playerRow, playerColumn, callback) {
     this.robotPlay(playerRow, playerColumn, callback);
   } else {
     this._board.take(robotRow, robotColumn, this._robot.symbol());
-    if(this._board.hasWon('o')) {
-      callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn + '.  the computer won', '', 'true'));
-    } else {
-      callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
-    }
+    this.robotPlayOutcomes(playerRow, playerColumn, robotRow, robotColumn, callback)  
   }
 };
 
+Game.prototype.robotPlayOutcomes = function(playerRow, playerColumn, robotRow, robotColumn, callback) {
+  if(this._board.hasWon('o')) {
+    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn + '.  the computer won.', '', 'true'));
+  } else {
+    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
+  }
+};
 
 function buildSpeechResponse(output, repromptText, shouldEndSession) {
     return {

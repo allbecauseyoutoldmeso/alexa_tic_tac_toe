@@ -1,53 +1,77 @@
 // exports.handler = function(event, context) { eventHandler(event, context) };
 
 function eventHandler(event, context) {
-    try {
-        if (event.request.type === 'LaunchRequest') {
-            welcome(function callback(speechletResponse) {
-              context.succeed(buildResponse(event.session.attributes, speechletResponse));
-            });
-        } else if (event.request.type === 'IntentRequest') {
-            intentHandler(event.request, function callback(speechletResponse) {
-              context.succeed(buildResponse(event.session.attributes, speechletResponse));
-            });
-        }
-    } catch (e) {
-        context.fail('Exception: ' + e);
+  try {
+    if (event.request.type === 'LaunchRequest') {
+      welcome(function callback(speechletResponse) {
+        context.succeed(buildResponse(event.session.attributes, speechletResponse));
+      });
+    } else if (event.request.type === 'IntentRequest') {
+      intentHandler(event.request, function callback(speechletResponse) {
+        context.succeed(buildResponse(event.session.attributes, speechletResponse));
+      });
     }
+  } catch (e) {
+    context.fail('Exception: ' + e);
+  }
 }
 
 function welcome(callback) {
-    this.game = new Game(3);
-    callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column .  for example top left or middle right or bottom middle', false));
+  this.game = new Game(3);
+  callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column .  for example top left or middle right or bottom middle', false));
 }
 
 function intentHandler(intentRequest, callback) {
-
   var intentName = intentRequest.intent.name;
-
   var row = intentRequest.intent.slots.row.value;
-
   var column = intentRequest.intent.slots.column.value;
-
   if (intentName == 'PlayIntent') {
-    play(row, column, callback);
+    this.game.playerPlay(row, column, callback);
   } else {
     throw 'Invalid intent';
   }
 }
+// function play(row, column, callback) {
+//   var rows = {top: 0, middle: 1, bottom: 2};
+//   var columns = {left: 0, middle: 1, right: 2};
 
-function play(row, column, callback) {
+  // if(this.game.board().grid()[rows[row]][columns[column]] !== '') {
+  //   callback(buildSpeechResponse('that cell is already taken', '', 'false'));
+  // } else {
+  //   this.game.playerPlay(rows[row], columns[column]);
+  //   var robotChoice = this.game.robotChoose();
+  //   this.game.board().take(robotChoice[0], robotChoice[1], 'o');
+  //   callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
+  // }
+// }
+
+
+Game.prototype.playerPlay = function(row, column, callback) {
   var rows = {top: 0, middle: 1, bottom: 2};
   var columns = {left: 0, middle: 1, right: 2};
-  if(this.game.board().grid()[rows[row]][columns[column]] !== '') {
-    callback(buildSpeechResponse('that cell is already taken', '', 'false'));
+  if(this._board.grid()[rows[row]][columns[column]] !== '') {
+    this.explainMistake(callback);
   } else {
-    this.game.playerPlay(rows[row], columns[column]);
-    var robotChoice = this.game.robotChoose();
-    this.game.board().take(robotChoice[0], robotChoice[1], 'o');
-    callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
+    this._board.take(rows[row], columns[column], this._player.symbol());
+    this.robotPlay(rows[row], columns[column], callback);
   }
-}
+};
+
+Game.prototype.explainMistake = function(callback) {
+  callback(buildSpeechResponse('that cell is already taken', '', 'false'));
+};
+
+Game.prototype.robotPlay = function(playerRow, playerColumn, callback) {
+  var robotRow = this._robot.choice(this._boardSize);
+  var robotColumn = this._robot.choice(this._boardSize);
+  if(this._board.grid()[robotRow][robotColumn] !== '') {
+    this.robotPlay();
+  } else {
+    this._board.take(robotRow, robotColumn, this._robot.symbol());
+    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));
+  }
+};
+
 
 function buildSpeechResponse(output, repromptText, shouldEndSession) {
     return {
@@ -152,39 +176,39 @@ Game.prototype.switchPlayer = function() {
   this._currentPlayer === this._player ? this._currentPlayer = this._robot : this._currentPlayer = this._player;
 };
 
-Game.prototype.playerPlay = function(row, column) {
-  if(this._board.grid()[row][column] !== '') {
-    this.explainMistake();
-  } else {
-    this._board.take(row, column, this._player.symbol());
-  }
-};
-
-Game.prototype.robotPlay = function() {
-  var row = this._robot.choice(this._boardSize);
-  var column = this._robot.choice(this._boardSize);
-  if(this._board.grid()[row][column] !== '') {
-    this.robotPlay();
-  } else {
-    this._board.take(row, column, this._robot.symbol());
-  }
-};
+// Game.prototype.playerPlay = function(row, column) {
+//   if(this._board.grid()[row][column] !== '') {
+//     this.explainMistake();
+//   } else {
+//     this._board.take(row, column, this._player.symbol());
+//   }
+// };
+//
+// Game.prototype.robotPlay = function() {
+//   var row = this._robot.choice(this._boardSize);
+//   var column = this._robot.choice(this._boardSize);
+//   if(this._board.grid()[row][column] !== '') {
+//     this.robotPlay();
+//   } else {
+//     this._board.take(row, column, this._robot.symbol());
+//   }
+// };
 
 //scrap the below and use the above with a callback, duh!  likewise with playerPlay you should be able to utilize built in error message by callbacking!
 
-Game.prototype.robotChoose = function() {
-  var row = this._robot.choice(this._boardSize);
-  var column = this._robot.choice(this._boardSize);
-  if(this._board.grid()[row][column] !== '') {
-    this.robotChoose();
-  } else {
-    return [row, column];
-  }
-};
+// Game.prototype.robotChoose = function() {
+//   var row = this._robot.choice(this._boardSize);
+//   var column = this._robot.choice(this._boardSize);
+//   if(this._board.grid()[row][column] !== '') {
+//     this.robotChoose();
+//   } else {
+//     return [row, column];
+//   }
+// };
 
-Game.prototype.explainMistake = function() {
-
-};
+// Game.prototype.explainMistake = function() {
+//
+// };
 
 function Player() {
   this._points = 0;

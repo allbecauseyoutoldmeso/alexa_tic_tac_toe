@@ -25,6 +25,7 @@ describe('#welcome', function() {
 
 describe('#sequence of a playIntent', function() {
   it('a playIntent changes the requested cell on the board', function() {
+    spyOn(self.game._robot, 'choice').and.returnValue(2)
     eventHandler(launchIntentEvent(), alexaContext());
     eventHandler(topLeftEvent(), alexaContext());
     expect(self.game.board().grid()).toEqual([['x', '', ''],

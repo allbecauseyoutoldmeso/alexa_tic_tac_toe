@@ -3,6 +3,7 @@ describe('Game', function() {
   var game;
   beforeEach(function() {
     game = new Game(3);
+    dummyCallback = function(x) { console.log(x); };
   });
 
   it('is initialized with a board', function() {
@@ -26,13 +27,13 @@ describe('Game', function() {
 
   describe('#playerPlay', function() {
     it('marks the board with an x', function() {
-      game.playerPlay('top', 'right', function callback(x,y,z) { function dummyCallback(x,y,z) { } });
+      game.playerPlay('top', 'right', function callback(x) { dummyCallback(x); });
       expect(game._board.grid()[0][2]).toEqual('x');
     });
     it('does a different thing if the cell is already taken', function() {
       spyOn(game, 'explainMistake');
-      game.playerPlay(0,0);
-      game.playerPlay(0,0);
+      game.playerPlay('top', 'right', function callback(x) { dummyCallback(x); });
+      game.playerPlay('top', 'right', function callback(x) { dummyCallback(x); });
       expect(game.explainMistake).toHaveBeenCalled();
     });
   });
@@ -40,21 +41,16 @@ describe('Game', function() {
   describe('#robotPlay', function() {
     it('marks the board with a o', function() {
       spyOn(game._robot, 'choice').and.returnValue(0);
-      game.robotPlay();
+      game.robotPlay(2, 2, function callback(x) { dummyCallback(x); });
       expect(game._board.grid()).toEqual([['o', '', ''],
                                           ['', '', ''],
                                           ['', '', '']]);
     });
     it('continues looping until it locates a free cell', function() {
-      game.playerPlay(0,0);
-      game.playerPlay(0,1);
-      game.playerPlay(0,2);
-      game.playerPlay(1,0);
-      game.playerPlay(1,1);
-      game.playerPlay(1,2);
-      game.playerPlay(2,0);
-      game.playerPlay(2,1);
-      game.robotPlay();
+      spyOn(game._board, 'grid').and.returnValue([['x', 'x', 'x'],
+                                                 ['x', 'x', 'x'],
+                                                 ['x', 'x', '']]);
+      game.robotPlay(2, 2, function callback(x) { dummyCallback(x); });
       expect(game._board.grid()).toEqual([['x', 'x', 'x'],
                                           ['x', 'x', 'x'],
                                           ['x', 'x', 'o']]);

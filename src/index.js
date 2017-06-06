@@ -51,7 +51,7 @@ Game.prototype.robotPlay = function(playerRow, playerColumn, callback) {
   var robotRow = this._robot.choice(this._boardSize);
   var robotColumn = this._robot.choice(this._boardSize);
   if(this._board.grid()[robotRow][robotColumn] !== '') {
-    this.robotPlay();
+    this.robotPlay(playerRow, playerColumn, callback);
   } else {
     this._board.take(robotRow, robotColumn, this._robot.symbol());
     callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + robotRow + ' ' + robotColumn, 'select another cell by row and column', 'false'));

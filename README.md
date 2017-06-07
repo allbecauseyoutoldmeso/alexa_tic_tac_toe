@@ -1,6 +1,6 @@
 # Alexa Tic-Tac-Toe
 
-<img width="256" alt="tic_tac_toe_logo" src="https://user-images.githubusercontent.com/25392162/26852510-66ed04ae-4b06-11e7-9ae2-aafd24930d40.png">
+<img width="256" alt="tic_tac_toe_logo" src="<img width="256" alt="logo" src="https://user-images.githubusercontent.com/25392162/26873671-8a27214a-4b72-11e7-9563-18c5af90701b.png">
 
 A simple Alexa skill written in Javascript.
 
@@ -15,7 +15,7 @@ Enables the user to play a game of Tic-Tac-Toe with Alexa.
 'Middle right.'  
 *'That cell is already taken...Select another cell.'*  
 'Middle middle.'  
-*'You played middle middle.  You won.'* 
+*'You played middle middle.  You won.'*
 
 ...hours of fun!
 

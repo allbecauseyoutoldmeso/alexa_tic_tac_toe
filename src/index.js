@@ -31,9 +31,9 @@ function goodbye(callback) {
 
 function intentHandler(intentRequest, callback) {
   var intentName = intentRequest.intent.name;
-  if(intentName === 'AMAZON.HelpIntent') {
+  if (intentName === 'AMAZON.HelpIntent') {
     support(callback);
-  } else if(intentName === 'AMAZON.StopIntent') {
+  } else if (intentName === 'AMAZON.StopIntent') {
     goodbye(callback);
   } else if (intentName === 'PlayIntent') {
     this.game.playerPlay(intentRequest.intent.slots.row.value, intentRequest.intent.slots.column.value, callback);

@@ -78,6 +78,6 @@ describe('#support', function() {
   it('provides the user with useful information', function() {
     var callback = jasmine.createSpy('callback');
     support(callback);
-    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('tic tac toe is usually played with a pencil and paper. two players take turns marking the cells in a three by three grid. the first player to place three of their marks in a horizontal, vertical, or diagonal line wins.  to play the game with alexa you need to select a cell by row and then column. for example say middle right or bottom middle.', 'select a cell by row and column. for example top left or middle right or bottom middle', false));
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('tic tac toe is usually played with a pencil and paper. two players take turns marking the cells in a three by three grid. the first player to place three of their marks in a horizontal, vertical, or diagonal line wins. to play the game with alexa you need to select a cell by row and then column. for example say middle right or bottom middle.', 'select a cell by row and column. for example top left or middle right or bottom middle', false));
   });
 });

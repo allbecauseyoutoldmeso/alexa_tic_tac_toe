@@ -9,6 +9,11 @@ describe('#eventHandler', function() {
     eventHandler(topLeftEvent(), alexaContext());
     expect(self.intentHandler).toHaveBeenCalled();
   });
+  it('recognises a help request and triggers a help message', function() {
+    spyOn(self, 'support');
+    eventHandler(helpIntentEvent(), alexaContext());
+    expect(self.support).toHaveBeenCalled();
+  });
 });
 
 describe('#welcome', function() {

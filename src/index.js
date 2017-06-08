@@ -27,10 +27,10 @@ function support(callback) {
 
 function intentHandler(intentRequest, callback) {
   var intentName = intentRequest.intent.name;
-  var row = intentRequest.intent.slots.row.value;
-  var column = intentRequest.intent.slots.column.value;
-  if (intentName == 'PlayIntent') {
-    this.game.playerPlay(row, column, callback);
+  if(intentName === 'AMAZON.HelpIntent') {
+    support(callback);
+  } else if (intentName == 'PlayIntent') {
+    this.game.playerPlay(intentRequest.intent.slots.row.value, intentRequest.intent.slots.column.value, callback);
   } else {
     throw 'Invalid intent';
   }

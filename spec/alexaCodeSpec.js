@@ -20,7 +20,7 @@ describe('#welcome', function() {
   it('returns a greeting', function() {
     var callback = jasmine.createSpy('callback');
     welcome(callback);
-    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('welcome to tic tac toe. to play the game select a cell by row and column. for example top left or bottom middle. you can ask for help if you need more information, or say stop to exit.', 'select a cell by row and column. for example top left or middle right or bottom middle', false));
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('welcome to tic tac toe. to play the game select a cell by row and column. for example say top left or bottom middle. you can ask for help if you need more information, or say stop to exit.', 'select a cell by row and column. for example say top left or middle right or bottom middle.', false));
   });
   it('initiates a game', function() {
     var callback = jasmine.createSpy('callback');
@@ -83,6 +83,14 @@ describe('#support', function() {
   it('provides the user with useful information', function() {
     var callback = jasmine.createSpy('callback');
     support(callback);
-    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('tic tac toe is usually played with a pencil and paper. two players take turns marking the cells in a three by three grid. the first player to place three of their marks in a horizontal, vertical, or diagonal line wins. to play the game with alexa you need to select a cell by row and then column. for example say middle right or bottom middle.', 'select a cell by row and column. for example top left or middle right or bottom middle', false));
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('tic tac toe is usually played with a pencil and paper. two players take turns marking the cells in a three by three grid. the first player to place three of their marks in a horizontal, vertical, or diagonal line wins. to play the game with alexa select a cell by row and then column. for example you can say middle right or bottom middle. which cell would you like to select?', 'select a cell by row and column. for example say top left or middle right or bottom middle', false));
+  });
+});
+
+describe('#goodbye', function() {
+  it('generates a goodbye message and ends the session', function() {
+    var callback = jasmine.createSpy('callback');
+    goodbye(callback);
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('goodbye', '', true));
   });
 });

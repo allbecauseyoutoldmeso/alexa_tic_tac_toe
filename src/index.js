@@ -18,11 +18,15 @@ function eventHandler(event, context) {
 
 function welcome(callback) {
   this.game = new Game(3);
-  callback(buildSpeechResponse('welcome to tic tac toe. to play the game select a cell by row and column. for example top left or bottom middle. you can ask for help if you need more information, or say stop to exit.', 'select a cell by row and column. for example top left or middle right or bottom middle', false));
+  callback(buildSpeechResponse('welcome to tic tac toe. to play the game select a cell by row and column. for example say top left or bottom middle. you can ask for help if you need more information, or say stop to exit.', 'select a cell by row and column. for example say top left or middle right or bottom middle.', false));
 }
 
 function support(callback) {
-  callback(buildSpeechResponse('tic tac toe is usually played with a pencil and paper. two players take turns marking the cells in a three by three grid. the first player to place three of their marks in a horizontal, vertical, or diagonal line wins. to play the game with alexa you need to select a cell by row and then column. for example say middle right or bottom middle.', 'select a cell by row and column. for example top left or middle right or bottom middle', false));
+  callback(buildSpeechResponse('tic tac toe is usually played with a pencil and paper. two players take turns marking the cells in a three by three grid. the first player to place three of their marks in a horizontal, vertical, or diagonal line wins. to play the game with alexa select a cell by row and then column. for example you can say middle right or bottom middle. which cell would you like to select?', 'select a cell by row and column. for example say top left or middle right or bottom middle', false));
+}
+
+function goodbye(callback) {
+  callback(buildSpeechResponse('goodbye', '', true));  
 }
 
 function intentHandler(intentRequest, callback) {

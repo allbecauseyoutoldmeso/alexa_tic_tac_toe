@@ -1,4 +1,4 @@
-describe('#eventHandler', function() {
+describe('#eventHandler and intentHandler', function() {
   it('recognises a launch request and triggers a welcome message', function() {
     spyOn(self, 'welcome');
     eventHandler(launchIntentEvent(), alexaContext());
@@ -13,6 +13,11 @@ describe('#eventHandler', function() {
     spyOn(self, 'support');
     eventHandler(helpIntentEvent(), alexaContext());
     expect(self.support).toHaveBeenCalled();
+  });
+  it('recognises a stop request and ends the session with a goodbye message', function() {
+    spyOn(self, 'goodbye');
+    eventHandler(stopIntentEvent(), alexaContext());
+    expect(self.goodbye).toHaveBeenCalled();
   });
 });
 

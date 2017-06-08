@@ -26,14 +26,16 @@ function support(callback) {
 }
 
 function goodbye(callback) {
-  callback(buildSpeechResponse('goodbye', '', true));  
+  callback(buildSpeechResponse('goodbye', '', true));
 }
 
 function intentHandler(intentRequest, callback) {
   var intentName = intentRequest.intent.name;
   if(intentName === 'AMAZON.HelpIntent') {
     support(callback);
-  } else if (intentName == 'PlayIntent') {
+  } else if(intentName === 'AMAZON.StopIntent') {
+    goodbye(callback);
+  } else if (intentName === 'PlayIntent') {
     this.game.playerPlay(intentRequest.intent.slots.row.value, intentRequest.intent.slots.column.value, callback);
   } else {
     throw 'Invalid intent';

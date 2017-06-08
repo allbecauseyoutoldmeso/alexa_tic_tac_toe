@@ -3,12 +3,12 @@
 function eventHandler(event, context) {
   try {
     if (event.request.type === 'LaunchRequest') {
-      welcome(function callback(speechletResponse) {
-        context.succeed(buildResponse(event.session.attributes, speechletResponse));
+      welcome(function callback(speechResponse) {
+        context.succeed(buildResponse(event.session.attributes, speechResponse));
       });
     } else if (event.request.type === 'IntentRequest') {
-      intentHandler(event.request, function callback(speechletResponse) {
-        context.succeed(buildResponse(event.session.attributes, speechletResponse));
+      intentHandler(event.request, function callback(speechResponse) {
+        context.succeed(buildResponse(event.session.attributes, speechResponse));
       });
     }
   } catch (e) {
@@ -198,10 +198,10 @@ function buildSpeechResponse(output, repromptText, shouldEndSession) {
     };
 }
 
-function buildResponse(sessionAttributes, speechletResponse) {
+function buildResponse(sessionAttributes, speechResponse) {
     return {
         version: '1.0',
         sessionAttributes: sessionAttributes,
-        response: speechletResponse
+        response: speechResponse
     };
 }

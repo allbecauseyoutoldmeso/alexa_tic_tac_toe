@@ -19,7 +19,4 @@
 
 ...hours of fun!
 
-Sadly this skill is currently unpublished.  You can clone this repository to run my tests, or if you have an Amazon developer account feel free to copy my code into your own skill and play with it (nb if you do so you will need to uncomment the first line in index.js, which i commented out as it broke my Jasmine tests).
-
-* To be improved:  
-Amazon have asked me to add standard *help*, *stop* and *reprompt* features before they will publish it.  Watch this space!
+I have only just submitted this skill to Amazon for certification.  In the meantime you can clone this repository to run my tests, or if you have an Amazon developer account feel free to copy my code into your own skill and play with it (nb if you do so you will need to uncomment the first line in index.js, which i commented out as it broke my Jasmine tests).

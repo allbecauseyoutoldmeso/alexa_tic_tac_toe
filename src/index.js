@@ -91,7 +91,7 @@ Game.prototype.robotPlayOutcomes = function(playerRow, playerColumn, robotRow, r
   if(this._board.hasWon(this._robot.symbol())) {
     callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '. the computer played ' + rows[robotRow] + ' ' + columns[robotColumn] + '. the computer won.', '', 'true'));
   } else {
-    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + rows[robotRow] + ' ' + columns[robotColumn], 'select another cell by row and column', 'false'));
+    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '. the computer played ' + rows[robotRow] + ' ' + columns[robotColumn], 'select another cell by row and column', 'false'));
   }
 };
 

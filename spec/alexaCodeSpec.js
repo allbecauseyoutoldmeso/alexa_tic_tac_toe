@@ -15,7 +15,7 @@ describe('#welcome', function() {
   it('returns a greeting', function() {
     var callback = jasmine.createSpy('callback');
     welcome(callback);
-    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column.  for example top left or middle right or bottom middle', false));
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('welcome to tic tac toe. to play the game select a cell by row and column. for example top left or bottom middle. you can ask for help if you need more information, or say stop to exit.', 'select a cell by row and column. for example top left or middle right or bottom middle', false));
   });
   it('initiates a game', function() {
     var callback = jasmine.createSpy('callback');
@@ -56,20 +56,28 @@ describe('#sequence of a playIntent', function() {
     self.game._board._grid = [['','',''], ['','x',''], ['','','x']];
     spyOn(self, 'buildSpeechResponse');
     eventHandler(topLeftEvent(), alexaContext());
-    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  you won.', '', 'true');
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left. you won.', '', 'true');
   });
   it('generates a draw message if the board is full', function() {
     self.game = new Game(3);
     self.game._board._grid = [['','o','x'], ['x','x','o'], ['o','x','o']];
     spyOn(self, 'buildSpeechResponse');
     eventHandler(topLeftEvent(), alexaContext());
-    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  the game is a draw.', '', 'true');
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left. there are no cells left. the game is a draw.', '', 'true');
   });
   it('generates a lose message if the computer won', function() {
     self.game = new Game(3);
     self.game._board._grid = [['','o','x'], ['x','o','o'], ['o','','x']];
     spyOn(self, 'buildSpeechResponse');
     eventHandler(topLeftEvent(), alexaContext());
-    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left.  the computer played bottom middle.  the computer won.', '', 'true');
+    expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left. the computer played bottom middle. the computer won.', '', 'true');
+  });
+});
+
+describe('#support', function() {
+  it('provides the user with useful information', function() {
+    var callback = jasmine.createSpy('callback');
+    support(callback);
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('tic tac toe is usually played with a pencil and paper. two players take turns marking the cells in a three by three grid. the first player to place three of their marks in a horizontal, vertical, or diagonal line wins.  to play the game with alexa you need to select a cell by row and then column. for example say middle right or bottom middle.', 'select a cell by row and column. for example top left or middle right or bottom middle', false));
   });
 });

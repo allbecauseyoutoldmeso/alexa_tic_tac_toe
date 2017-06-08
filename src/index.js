@@ -18,7 +18,7 @@ function eventHandler(event, context) {
 
 function welcome(callback) {
   this.game = new Game(3);
-  callback(buildSpeechResponse('welcome to tic tac toe', 'select a cell by row and column.  for example top left or middle right or bottom middle', false));
+  callback(buildSpeechResponse('welcome to tic tac toe. to play the game select a cell by row and column. for example top left or bottom middle. you can ask for help if you need more information, or say stop to exit.', 'select a cell by row and column. for example top left or middle right or bottom middle', false));
 }
 
 function intentHandler(intentRequest, callback) {
@@ -56,9 +56,9 @@ Game.prototype.playerPlay = function(row, column, callback) {
 
 Game.prototype.playerPlayOutcomes = function(row, column, callback) {
   if(this._board.hasWon(this._player.symbol())) {
-    callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  you won.', '', 'true'));
+    callback(buildSpeechResponse('you played ' + row + ' ' + column + '. you won.', '', 'true'));
   } else if(this._board.isFull()) {
-    callback(buildSpeechResponse('you played ' + row + ' ' + column + '.  the game is a draw.', '', 'true'));
+    callback(buildSpeechResponse('you played ' + row + ' ' + column + '. there are no cells left. the game is a draw.', '', 'true'));
   } else {
     this.robotPlay(row, column, callback);
   }
@@ -79,7 +79,7 @@ Game.prototype.robotPlayOutcomes = function(playerRow, playerColumn, robotRow, r
   var rows = ['top', 'middle', 'bottom'];
   var columns = ['left', 'middle', 'right'];
   if(this._board.hasWon(this._robot.symbol())) {
-    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + rows[robotRow] + ' ' + columns[robotColumn] + '.  the computer won.', '', 'true'));
+    callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '. the computer played ' + rows[robotRow] + ' ' + columns[robotColumn] + '. the computer won.', '', 'true'));
   } else {
     callback(buildSpeechResponse('you played ' + playerRow + ' ' + playerColumn + '.  the computer played ' + rows[robotRow] + ' ' + columns[robotColumn], 'select another cell by row and column', 'false'));
   }

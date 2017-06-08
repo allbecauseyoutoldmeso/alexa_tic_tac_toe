@@ -12,6 +12,9 @@
         }
       ],
       "intent": "PlayIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
     }
   ]
 }

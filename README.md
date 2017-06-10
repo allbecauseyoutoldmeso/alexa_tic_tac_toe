@@ -23,4 +23,4 @@
 
 ...hours of fun!
 
-I have only just submitted this skill for certification in the UK.  In the meantime you can clone this repository to run my tests, or if you have an Amazon developer account feel free to copy my code into your own skill and play with it (nb if you do so you will need to uncomment the first line in index.js, which i commented out as it broke my Jasmine tests).
+I have only just submitted this skill for certification in the UK.  In the meantime you can clone this repository to run my tests, or if you have an Amazon developer account feel free to copy my code into your own skill and play with it (nb if you do so you will need to uncomment the first line in index.js, which I commented out as it broke my Jasmine tests).

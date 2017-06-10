@@ -4,7 +4,7 @@
 
 * Personal project.
 
-* Now published by Amazon US!
+* Now published and available to Amazon Alexa users in the US!
 
 * A simple Alexa skill written in JavaScript.
 

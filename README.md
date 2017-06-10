@@ -4,12 +4,14 @@
 
 * Personal project.
 
+* Now published by Amazon US!
+
 * A simple Alexa skill written in JavaScript.
 
 * Enables the user to play a game of Tic-Tac-Toe with Alexa.
 
 'Alexa, open Tic-Tac-Toe.'  
-*'Welcome to Tic-Tac-Toe...Select a cell by row and column.  For example top left, or middle right, or bottom middle.'*    
+*'Welcome to Tic-Tac-Toe...Select a cell by row and column.  For example say top left, or middle right, or bottom middle.'*    
 'Top right.'   
 *'You played top right.  The computer played middle left.'*  
 'Bottom left'  
@@ -17,8 +19,8 @@
 'Middle right.'  
 *'That cell is already taken...Select another cell.'*  
 'Middle middle.'  
-*'You played middle middle.  You won.'*
+*'You played middle middle.  You won!'*
 
 ...hours of fun!
 
-I have only just submitted this skill to Amazon for certification.  In the meantime you can clone this repository to run my tests, or if you have an Amazon developer account feel free to copy my code into your own skill and play with it (nb if you do so you will need to uncomment the first line in index.js, which i commented out as it broke my Jasmine tests).
+I have only just submitted this skill for certification in the UK.  In the meantime you can clone this repository to run my tests, or if you have an Amazon developer account feel free to copy my code into your own skill and play with it (nb if you do so you will need to uncomment the first line in index.js, which i commented out as it broke my Jasmine tests).

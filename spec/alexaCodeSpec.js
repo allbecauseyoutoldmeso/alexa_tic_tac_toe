@@ -99,3 +99,11 @@ describe('#goodbye', function() {
     expect(callback).toHaveBeenCalledWith(buildSpeechResponse('goodbye', '', true));
   });
 });
+
+describe('#notASlot', function() {
+  it('explains that is not a call', function() {
+    var callback = jasmine.createSpy('callback');
+    notASlot(callback);
+    expect(callback).toHaveBeenCalledWith(buildSpeechResponse('that is not a valid cell.  select a cell by row and column.  for example say top right or bottom middle.', 'which cell would you like to select?', false));
+  });
+});

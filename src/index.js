@@ -60,7 +60,9 @@ Game.prototype.board = function() {
 Game.prototype.playerPlay = function(row, column, callback) {
   var rows = {'top': 0, 'middle': 1, 'bottom': 2};
   var columns = {'left': 0, 'middle': 1, 'right': 2};
-  if(this._board.grid()[rows[row]][columns[column]] !== '') {
+  if(! ['top','middle','bottom'].includes(row) || ! ['left','middle','right'].includes(column)) {
+    notASlot(callback);
+  } else if(this._board.grid()[rows[row]][columns[column]] !== '') {
     callback(buildSpeechResponse('that cell is already taken', 'select another cell', 'false'));
   } else {
     this._board.take(rows[row], columns[column], this._player.symbol());

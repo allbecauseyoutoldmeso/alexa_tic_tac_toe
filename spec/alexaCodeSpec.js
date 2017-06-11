@@ -82,6 +82,11 @@ describe('#sequence of a playIntent', function() {
     eventHandler(topLeftEvent(), alexaContext());
     expect(self.buildSpeechResponse).toHaveBeenCalledWith('you played top left. the computer played bottom middle. the computer won.', '', 'true');
   });
+  it('explains when a slot is invalid', function() {
+    spyOn(self, 'notASlot');
+    eventHandler(pokemonIntentEvent(), alexaContext());
+    expect(self.notASlot).toHaveBeenCalled();
+  });
 });
 
 describe('#support', function() {
@@ -101,7 +106,7 @@ describe('#goodbye', function() {
 });
 
 describe('#notASlot', function() {
-  it('explains that is not a call', function() {
+  it('explains that is not a cell', function() {
     var callback = jasmine.createSpy('callback');
     notASlot(callback);
     expect(callback).toHaveBeenCalledWith(buildSpeechResponse('that is not a valid cell.  select a cell by row and column.  for example say top right or bottom middle.', 'which cell would you like to select?', false));

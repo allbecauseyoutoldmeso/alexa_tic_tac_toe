@@ -4,7 +4,7 @@
 
 * Personal project.
 
-* Now published and available to Amazon Alexa users!  Just go to to your Alexa app and search for 'tic tac toe' or 'noughts and crosses' by Catherine Gleeson.
+* Now published and available to Amazon Alexa users!  Just go to to your Alexa app and search Skills for 'tic tac toe' or 'noughts and crosses' by Catherine Gleeson.
 
 * A simple Alexa skill written in JavaScript.
 

@@ -4,7 +4,7 @@
 
 * Personal project.
 
-* Now published and available to Amazon Alexa users in the US!
+* Now published and available to Amazon Alexa users!  Just go to to your Alexa app and search for 'tic tac toe' or 'noughts and crosses', author Catherine Gleeson.
 
 * A simple Alexa skill written in JavaScript.
 
@@ -22,5 +22,3 @@
 *'You played middle middle.  You won!'*
 
 ...hours of fun!
-
-I have only just submitted this skill for certification in the UK.  In the meantime you can clone this repository to run my tests, or if you have an Amazon developer account feel free to copy my code into your own skill and play with it (nb if you do so you will need to uncomment the first line in index.js, which I commented out as it broke my Jasmine tests).

@@ -6,7 +6,7 @@
 
 * Now published and available to Amazon Alexa users!  Just go to to your Alexa app and search Skills for 'tic tac toe' or 'noughts and crosses' by Catherine Gleeson.
 
-* A simple Alexa skill written in JavaScript.
+* An Alexa skill written in JavaScript, TDDed using Jasmine.
 
 * Enables the user to play a game of Tic-Tac-Toe with Alexa.
 

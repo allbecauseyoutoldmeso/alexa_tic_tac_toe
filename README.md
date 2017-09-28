@@ -1,10 +1,9 @@
 # Alexa Tic-Tac-Toe
 
-<img width="256" alt="logo" src="https://user-images.githubusercontent.com/25392162/26873671-8a27214a-4b72-11e7-9563-18c5af90701b.png">
-
-* Personal project.
 
 * Now published and available to Amazon Alexa users!  Just go to to your Alexa app and search Skills for 'tic tac toe' or 'noughts and crosses' by Catherine Gleeson.
+
+<img width="256" alt="logo" src="https://user-images.githubusercontent.com/25392162/26873671-8a27214a-4b72-11e7-9563-18c5af90701b.png">
 
 * An Alexa skill written in JavaScript, TDDed using Jasmine.
 
